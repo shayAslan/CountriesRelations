@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/countriesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/radioGroup" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/refreshBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="onClick"
+        android:src="@android:drawable/stat_notify_sync"
+        android:visibility="gone" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#eeeeee"
+        android:checkedButton="@+id/radioAZ"
+        android:elevation="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:saveEnabled="false">
+
+        <RadioButton
+            android:id="@+id/radioAZ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:saveEnabled="false"
+            android:text="@string/a_z" />
+
+        <RadioButton
+            android:id="@+id/radioZA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:saveEnabled="false"
+            android:text="@string/z_a" />
+
+        <RadioButton
+            android:id="@+id/radioSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:saveEnabled="false"
+            android:text="@string/country_size" />
+
+    </RadioGroup>
+
+
+</RelativeLayout>
