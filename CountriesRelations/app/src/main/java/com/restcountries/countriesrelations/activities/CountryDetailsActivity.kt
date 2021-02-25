@@ -20,14 +20,16 @@ class CountryDetailsActivity : AppCompatActivity() {
     }
 
     private fun initDataWithView() {
-        val countryDetailsData = intent.getSerializableExtra("country-data") as CountryDetailsData
-        if (intent != null && countryDetailsData != null) {
-            binding.lblCountryTitle.text =
-                "${getString(R.string.country_title_prefix)}${countryDetailsData.selectedCountry.name}"
+        if (intent != null ) {
+            val countryDetailsData = intent.getSerializableExtra("country-data") as CountryDetailsData
             val stringBuilder = StringBuilder()
-            for (country in countryDetailsData.bordersListData) {
-                stringBuilder.append(country.name + " - " + country.nativeName)
-                stringBuilder.appendLine()
+            if (countryDetailsData != null){
+                binding.lblCountryTitle.text =
+                    "${getString(R.string.country_title_prefix)}${countryDetailsData.selectedCountry.name}"
+                for (country in countryDetailsData.bordersListData) {
+                    stringBuilder.append(country.name + " - " + country.nativeName)
+                    stringBuilder.appendLine()
+                }
             }
             if (stringBuilder.isEmpty())
                 stringBuilder.append(getString(R.string.non))

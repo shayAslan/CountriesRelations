@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initViewModal()
-        initCheckBoxes()
+        initRadioGroup()
         mMainActivityViewModel.getCountriesList()
     }
 
-    private fun initCheckBoxes() {
+    private fun initRadioGroup() {
         binding.radioGroup.setOnCheckedChangeListener(this)
     }
 
@@ -40,8 +40,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         mMainActivityViewModel.isLoading.observe(this, { isLoading ->
             if (isLoading) {
                 binding.progressBar.visibility = View.VISIBLE
+                binding.radioGroup.visibility = View.INVISIBLE
             } else {
                 binding.progressBar.visibility = View.GONE
+                binding.radioGroup.visibility = View.VISIBLE
             }
 
         })
@@ -73,20 +75,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         when (checkedId) {
             R.id.radioAZ -> {
                 mCountriesList = Utils.sortAZ(mCountriesList)
-                mCountriesAdapter.initData(mCountriesList)
-                mCountriesAdapter.notifyDataSetChanged()
             }
             R.id.radioZA -> {
                 mCountriesList = Utils.sortZA(mCountriesList)
-                mCountriesAdapter.initData(mCountriesList)
-                mCountriesAdapter.notifyDataSetChanged()
             }
             R.id.radioSize -> {
                 mCountriesList = Utils.sortSize(mCountriesList)
-                mCountriesAdapter.initData(mCountriesList)
-                mCountriesAdapter.notifyDataSetChanged()
             }
         }
+        mCountriesAdapter.initData(mCountriesList)
+        mCountriesAdapter.notifyDataSetChanged()
+        binding.countriesRecyclerView.layoutManager!!.scrollToPosition(0)
     }
 
 }
